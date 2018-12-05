@@ -6,26 +6,24 @@
  * @subpackage ASD_Function_Lib
  * Author:       Michael H Fahey
  * Author URI:   https://artisansitedesigns.com/staff/michael-h-fahey
- * Version:      1.201811291
+ * Version:      1.201812042
  */
-
-$this_asd_function_lib_version = 1.201811291;
-
-if ( ! isset( $asd_function_lib_version ) ) {
-   $asd_function_lib_version = $this_asd_function_lib_version;
-   /* setup_asd_admin_functions_1_201811291(); */
-} else {
-   if ( $this_asd_function_lib_version > $asd_function_lib_version ) {
-      /* unhook_asd_admin_functions_1_201811291(); */
-      /* setup_asd_admin_functions_1_201811291(); */
-      $asd_function_lib_version = $this_asd_function_lib_version;
-   }      
-}
-
 
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '' );
 }
+
+$asd_asdfunctionlib_file_data  = get_file_data( __FILE__, array( 'Version' => 'Version' ) );
+$this_asd_function_lib_version = $asd_asdfunctionlib_file_data['Version'];
+
+if ( ! isset( $asd_function_lib_version ) ) {
+	$asd_function_lib_version = $this_asd_function_lib_version;
+} else {
+	if ( $this_asd_function_lib_version > $asd_function_lib_version ) {
+		$asd_function_lib_version = $this_asd_function_lib_version;
+	}
+}
+
 
 
 if ( ! function_exists( 'asd_function_lib_widgets_enqueues' ) ) {
@@ -39,7 +37,7 @@ if ( ! function_exists( 'asd_function_lib_widgets_enqueues' ) ) {
 	 */
 	function asd_function_lib_widgets_enqueues( $page ) {
 		if ( 'artisan-site-designs_page_asd_decorate_navbar_settings' === $page ) {
-			wp_enqueue_style( 'asd-function-lib', plugin_dir_url( __FILE__ ) . 'css/asd-function-lib.css', array() );
+			wp_enqueue_style( 'asd-function-lib', plugin_dir_url( __FILE__ ) . 'css/asd-function-lib.css', array(), $this_asd_function_lib_version );
 		}
 	}
 	add_action( 'admin_enqueue_scripts', 'asd_function_lib_widgets_enqueues' );
@@ -101,7 +99,7 @@ if ( ! function_exists( 'asd_media_library_selector_control' ) ) {
 		echo '<input type="button" class="button-primary" value="' . esc_attr( $params_array['buttontext'] ) .
 				'" id="' . esc_attr( $settingname ) . '_button"/>';
 
-			?>
+		?>
 			<script type="text/javascript">
 			jQuery( document ).ready( function($) {
 				jQuery( 'input#<?php echo esc_attr( $settingname . '_button' ); ?>' ).click(

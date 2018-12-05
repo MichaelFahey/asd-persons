@@ -6,7 +6,7 @@
  * @package ASD_Persons
  * Plugin Name:    ASD Persons
  * Plugin URI:     https://artisansitedesigns.com/persons/asd-persons/
- * Description:    Defines an "ASD Person" Custom Post Type in order to create Rich Content using JSON-LD Structured Data. Included are a grouping Taxonomy, and a shortcode
+ * Description:    Defines a "Person" Custom Post Type in order to create Rich Content using JSON-LD Structured Data. Included are a grouping Taxonomy, and a shortcode
  * Author:         Michael H Fahey
  * Author URI:     https://artisansitedesigns.com/staff/michael-h-fahey/
  * Text Domain:    asd_persons

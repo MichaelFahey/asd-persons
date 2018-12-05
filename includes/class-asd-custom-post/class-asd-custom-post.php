@@ -5,15 +5,15 @@
  * @package ASD_Custom_Post_Type
  * Author:      Michael H Fahey
  * Author URI:  https://artisansitedesigns.com/staff/michael-h-fahey
- * Version:     1.201811241
+ * Version:     1.201812042
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '' );
 }
 
-
-$this_asd_custom_post_version = 1.201811241;
+$asd_customposttype_file_data = get_file_data( __FILE__, array( 'Version' => 'Version' ) );
+$this_asd_custom_post_version = $asd_customposttype_file_data['Version'];
 
 if ( isset( $asd_custom_post_version ) ) {
 	if ( $asd_custom_post_version < $this_asd_custom_post_version ) {

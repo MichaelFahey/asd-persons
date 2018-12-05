@@ -7,10 +7,8 @@
  * @subpackage ASD_Admin
  * Author:       Michael H Fahey
  * Author URI:   https://artisansitedesigns.com/staff/michael-h-fahey
- * Version:      1.201811301
+ * Version:      1.201812042
  */
-
-$this_asd_admin_menu_version = 1.201811301;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '' );
@@ -25,14 +23,16 @@ if ( ! defined( 'ABSPATH' ) ) {
  * The values of the version of this module ($this_asd_admin_menu_version)
  * is compared to the value of the currently hooked version ($asd_admin_menu_version)
  * and if this module is higher version, the function
- *   unhook_asd_admin_functions_1_201811301();
+ *   unhook_asd_admin_functions_1_201812042();
  * is called to unhook the old version, and the function
- *   setup_asd_admin_functions_1_201811301();
+ *   setup_asd_admin_functions_1_201812042();
  * is called to hook the new versions.
  * This can happen more than once, so that in the end the highest version
  * will be the one that is hooked.
  * ---------------------------------------------------------------------------------- */
 
+$asd_admin_menu_file_data    = get_file_data( __FILE__, array( 'Version' => 'Version' ) );
+$this_asd_admin_menu_version = $asd_admin_menu_file_data['Version'];
 
 /** ----------------------------------------------------------------------------
  *   a global array listing all the registered ASD post types.
@@ -49,48 +49,48 @@ if ( ! isset( $asd_tax_list ) ) {
 }
 
 
-if ( ! function_exists( 'asd_register_option_groups_1_201811301' ) ) {
+if ( ! function_exists( 'asd_register_option_groups_1_201812042' ) ) {
 	/**
 	 * ----------------------------------------------------------------------------
-	 *   function asd_register_option_groups_1_201811301()
+	 *   function asd_register_option_groups_1_201812042()
 	 *   if a newer version of asd-admin-menu is detected, this function
 	 *   is called to unhook the old version from filters
 	 *  ----------------------------------------------------------------------------
 	 */
-	function asd_register_option_groups_1_201811301() {
-		add_settings_section( 'asd_dashboard_option_section_id', 'Custom Type Menu Options', 'asd_dashboard_option_section_1_201811301', 'asd_dashboard_option_group' );
-		add_settings_section( 'asd_dashboard_option_section2_id', 'Custom Taxonomy Menu Options', 'asd_dashboard_option_section2_1_201811301', 'asd_dashboard_option_group2' );
+	function asd_register_option_groups_1_201812042() {
+		add_settings_section( 'asd_dashboard_option_section_id', 'Custom Type Menu Options', 'asd_dashboard_option_section_1_201812042', 'asd_dashboard_option_group' );
+		add_settings_section( 'asd_dashboard_option_section2_id', 'Custom Taxonomy Menu Options', 'asd_dashboard_option_section2_1_201812042', 'asd_dashboard_option_group2' );
 	}
 	if ( is_admin() ) {
-		add_action( 'admin_init', 'asd_register_option_groups_1_201811301', 10 );
+		add_action( 'admin_init', 'asd_register_option_groups_1_201812042', 10 );
 	}
 }
 
 
 
-if ( ! function_exists( 'asd_dashboard_option_section_1_201811301' ) ) {
+if ( ! function_exists( 'asd_dashboard_option_section_1_201812042' ) ) {
 	/**
 	 * ----------------------------------------------------------------------------
-	 *   function asd_dashboard_option_section_1_201811301()
+	 *   function asd_dashboard_option_section_1_201812042()
 	 *   calls the action to add options section for where Custom Types
 	 *   appear in the Dashboard
 	 *  ----------------------------------------------------------------------------
 	 */
-	function asd_dashboard_option_section_1_201811301() {
+	function asd_dashboard_option_section_1_201812042() {
 		echo '<i>Customize where Custom Types appear in your Dashboard.</i><br>' . "\r\n";
 		do_action( 'asd_dashboard_option_section' );
 	}
 }
 
-if ( ! function_exists( 'asd_dashboard_option_section2_1_201811301' ) ) {
+if ( ! function_exists( 'asd_dashboard_option_section2_1_201812042' ) ) {
 	/**
 	 * ----------------------------------------------------------------------------
-	 *   function asd_dashboard_option_section2_1_201811301()
+	 *   function asd_dashboard_option_section2_1_201812042()
 	 *   calls the action to add options section for where Custom Taxonomies
 	 *   appear in the Dashboard
 	 *  ----------------------------------------------------------------------------
 	 */
-	function asd_dashboard_option_section2_1_201811301() {
+	function asd_dashboard_option_section2_1_201812042() {
 		echo '<i>Customize where Custom Taxonomies appear in your Dashboard.</i><br>' . "\r\n";
 		do_action( 'asd_dashboard_option_section2' );
 	}
@@ -100,15 +100,15 @@ if ( ! function_exists( 'asd_dashboard_option_section2_1_201811301' ) ) {
 
 
 
-if ( ! function_exists( 'unhook_asd_admin_functions_1_201811301' ) ) {
+if ( ! function_exists( 'unhook_asd_admin_functions_1_201812042' ) ) {
 	/**
 	 * ----------------------------------------------------------------------------
-	 *   function unhook_asd_admin_functions_1_201811301()
+	 *   function unhook_asd_admin_functions_1_201812042()
 	 *   if a newer version of asd-admin-menu is detected, this function
 	 *   is called to unhook the old version from filters
 	 *  ----------------------------------------------------------------------------
 	 */
-	function unhook_asd_admin_functions_1_201811301() {
+	function unhook_asd_admin_functions_1_201812042() {
 		global $asd_admin_menu_version;
 		$underscore_asd_admin_menu_version = str_replace( '.', '_', $asd_admin_menu_version );
 		remove_action( 'admin_init', 'asd_register_option_groups_' . $underscore_asd_admin_menu_version, 10 );
@@ -125,14 +125,14 @@ if ( ! function_exists( 'unhook_asd_admin_functions_1_201811301' ) ) {
 }
 
 
-if ( ! function_exists( 'asd_setup_asd_admin_enqueues_1_201811301' ) ) {
+if ( ! function_exists( 'asd_setup_asd_admin_enqueues_1_201812042' ) ) {
 	/**
 	 * ----------------------------------------------------------------------------
-	 *   function asd_setup_asd_admin_enqueues_1_201811301()
+	 *   function asd_setup_asd_admin_enqueues_1_201812042()
 	 *   enqueue jquery, ui, tabs, css theme
 	 *  --------------------------------------------------------------------------
 	 */
-	function asd_setup_asd_admin_enqueues_1_201811301() {
+	function asd_setup_asd_admin_enqueues_1_201812042() {
 		global $this_asd_admin_menu_version;
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'jquery-ui-core' );
@@ -141,43 +141,43 @@ if ( ! function_exists( 'asd_setup_asd_admin_enqueues_1_201811301' ) ) {
 
 	}
 }
-add_action( 'admin_enqueue_scripts', 'asd_setup_asd_admin_enqueues_1_201811301' );
+add_action( 'admin_enqueue_scripts', 'asd_setup_asd_admin_enqueues_1_201812042' );
 
 
-if ( ! function_exists( 'setup_asd_admin_functions_1_201811301' ) ) {
+if ( ! function_exists( 'setup_asd_admin_functions_1_201812042' ) ) {
 	/**
 	 * ----------------------------------------------------------------------------
-	 *   function setup_asd_admin_functions_1_201811301()
+	 *   function setup_asd_admin_functions_1_201812042()
 	 *   groups the functions and their filter hook calls
 	 *  --------------------------------------------------------------------------
 	 */
-	function setup_asd_admin_functions_1_201811301() {
+	function setup_asd_admin_functions_1_201812042() {
 
-		if ( ! function_exists( 'asd_admin_menu_1_201811301' ) ) {
+		if ( ! function_exists( 'asd_admin_menu_1_201812042' ) ) {
 			/**
 			 * ----------------------------------------------------------------------------
-			 *   function asd_admin_menu_1_201811301()
+			 *   function asd_admin_menu_1_201812042()
 			 *   Adds the top-level menu, named Artisan Site Designs
 			 *   hooks into the admin_menu action
 			 *  --------------------------------------------------------------------------
 			 */
-			function asd_admin_menu_1_201811301() {
+			function asd_admin_menu_1_201812042() {
 				add_menu_page(
 					'Artisan Site Designs',
 					'Artisan Site Designs',
 					'manage_options',
 					'asd_settings',
-					'asd_admin_menu_settings_1_201811301',
+					'asd_admin_menu_settings_1_201812042',
 					'dashicons-admin-generic',
 					'2'
 				);
 			}
 			if ( is_admin() ) {
-				add_action( 'admin_menu', 'asd_admin_menu_1_201811301', 11 );
+				add_action( 'admin_menu', 'asd_admin_menu_1_201812042', 11 );
 			}
 		}
 
-		if ( ! function_exists( 'asd_admin_menu_settings_1_201811301' ) ) {
+		if ( ! function_exists( 'asd_admin_menu_settings_1_201812042' ) ) {
 			/**
 			 * ----------------------------------------------------------------------------
 			 *   function asd_admin_menu_settings()
@@ -185,7 +185,7 @@ if ( ! function_exists( 'setup_asd_admin_functions_1_201811301' ) ) {
 			 *   This function is a callback in asd_admin_menu()
 			 *  --------------------------------------------------------------------------
 			 */
-			function asd_admin_menu_settings_1_201811301() {
+			function asd_admin_menu_settings_1_201812042() {
 
 				echo '<a target="_blank" href="https://artisansitedesigns.com"><h1>Artisan Site Designs</h1></a>';
 
@@ -202,7 +202,7 @@ if ( ! function_exists( 'setup_asd_admin_functions_1_201811301' ) ) {
 				do_action( 'asd_settings_tabs_content' );
 				echo '</div>' . "\r\n";
 
-				info_on_published_plugins_1_201811301();
+				info_on_published_plugins_1_201812042();
 
 				echo '<br><br><h4>Library and Version Info:</h4>' . "\r\n";
 
@@ -249,28 +249,28 @@ if ( ! function_exists( 'setup_asd_admin_functions_1_201811301' ) ) {
 			}
 		}
 
-		if ( ! function_exists( 'asd_settings_tabs_links_standard_1_201811301' ) ) {
+		if ( ! function_exists( 'asd_settings_tabs_links_standard_1_201812042' ) ) {
 			/**
 			 * ----------------------------------------------------------------------------
-			 *   function asd_settings_tabs_links_standard_1_201811301()
+			 *   function asd_settings_tabs_links_standard_1_201812042()
 			 *  --------------------------------------------------------------------------
 			 */
-			function asd_settings_tabs_links_standard_1_201811301() {
+			function asd_settings_tabs_links_standard_1_201812042() {
 				echo '<li><a href="#asd_settings_tabs_content_custom_post_types">Custom Post Types</a></li>' . "\r\n";
 				echo '<li><a href="#asd_settings_tabs_content_dashboard_options">Dashboard Options</a></li>' . "\r\n";
 			}
 			if ( is_admin() ) {
-				add_action( 'asd_settings_tabs_links', 'asd_settings_tabs_links_standard_1_201811301' );
+				add_action( 'asd_settings_tabs_links', 'asd_settings_tabs_links_standard_1_201812042' );
 			}
 		}
 
-		if ( ! function_exists( 'asd_settings_tabs_content_standard_1_201811301' ) ) {
+		if ( ! function_exists( 'asd_settings_tabs_content_standard_1_201812042' ) ) {
 			/**
 			 * ----------------------------------------------------------------------------
-			 *   function asd_settings_tabs_content_standard_1_201811301()
+			 *   function asd_settings_tabs_content_standard_1_201812042()
 			 *  --------------------------------------------------------------------------
 			 */
-			function asd_settings_tabs_content_standard_1_201811301() {
+			function asd_settings_tabs_content_standard_1_201812042() {
 
 				global $asd_cpt_list;
 				global $asd_tax_list;
@@ -282,7 +282,7 @@ if ( ! function_exists( 'setup_asd_admin_functions_1_201811301' ) ) {
 					echo '<div class="row clearfix">' . "\r\n";
 
 					echo '   <div style="float:left;width:15%">' . "\r\n";
-					echo '      <a href="' . site_url( '/wp-admin/edit.php?post_type=' . esc_attr( $asd_cpt['slug'] )  ) . '">' . "\r\n";
+					echo '      <a href="' . esc_url( site_url( '/wp-admin/edit.php?post_type=' . esc_attr( $asd_cpt['slug'] ) ) ) . '">' . "\r\n";
 					echo esc_attr( $asd_cpt['name'] ) . "\r\n";
 					echo '      </a>' . "\r\n";
 					echo '   </div>' . "\r\n";
@@ -323,11 +323,11 @@ if ( ! function_exists( 'setup_asd_admin_functions_1_201811301' ) ) {
 
 			}
 			if ( is_admin() ) {
-				add_action( 'asd_settings_tabs_content', 'asd_settings_tabs_content_standard_1_201811301' );
+				add_action( 'asd_settings_tabs_content', 'asd_settings_tabs_content_standard_1_201812042' );
 			}
 		}
 
-		if ( ! function_exists( 'asd_custom_menu_order_1_201811301' ) ) {
+		if ( ! function_exists( 'asd_custom_menu_order_1_201812042' ) ) {
 			/**
 			 * ----------------------------------------------------------------------------
 			 *   function asd_custom_menu_order( $menu_ord )
@@ -338,7 +338,7 @@ if ( ! function_exists( 'setup_asd_admin_functions_1_201811301' ) ) {
 			 *
 			 * @param Array $menu_ord -  if this is not defined the function returns true.
 			 */
-			function asd_custom_menu_order_1_201811301( $menu_ord ) {
+			function asd_custom_menu_order_1_201812042( $menu_ord ) {
 				if ( ! $menu_ord ) {
 					return true;
 				}
@@ -363,12 +363,12 @@ if ( ! function_exists( 'setup_asd_admin_functions_1_201811301' ) ) {
 				return $asd_menu_entries;
 			}
 			if ( is_admin() ) {
-				add_filter( 'custom_menu_order', 'asd_custom_menu_order_1_201811301', 12 );
-				add_filter( 'menu_order', 'asd_custom_menu_order_1_201811301', 12 );
+				add_filter( 'custom_menu_order', 'asd_custom_menu_order_1_201812042', 12 );
+				add_filter( 'menu_order', 'asd_custom_menu_order_1_201812042', 12 );
 			}
 		}
 
-		if ( ! function_exists( 'asd_category_admin_submenu_1_201811301' ) ) {
+		if ( ! function_exists( 'asd_category_admin_submenu_1_201812042' ) ) {
 			/**
 			 * ----------------------------------------------------------------------------
 			 *   function asd_category_admin_submenu()
@@ -376,7 +376,7 @@ if ( ! function_exists( 'setup_asd_admin_functions_1_201811301' ) ) {
 			 *   hooks into the admin_menu action
 			 *  --------------------------------------------------------------------------
 			 */
-			function asd_category_admin_submenu_1_201811301() {
+			function asd_category_admin_submenu_1_201812042() {
 				add_submenu_page(
 					'asd_settings',
 					'Categories',
@@ -387,11 +387,11 @@ if ( ! function_exists( 'setup_asd_admin_functions_1_201811301' ) ) {
 				);
 			}
 			if ( is_admin() ) {
-				add_action( 'admin_menu', 'asd_category_admin_submenu_1_201811301', 16 );
+				add_action( 'admin_menu', 'asd_category_admin_submenu_1_201812042', 16 );
 			}
 		}
 
-		if ( ! function_exists( 'info_on_published_plugins_1_201811301' ) ) {
+		if ( ! function_exists( 'info_on_published_plugins_1_201812042' ) ) {
 			/**
 			 * ----------------------------------------------------------------------------
 			 *   function asd_category_admin_submenu()
@@ -399,7 +399,7 @@ if ( ! function_exists( 'setup_asd_admin_functions_1_201811301' ) ) {
 			 *   hooks into the admin_menu action
 			 *  --------------------------------------------------------------------------
 			 */
-			function info_on_published_plugins_1_201811301() {
+			function info_on_published_plugins_1_201812042() {
 
 				$moreplugins = '';
 
@@ -430,11 +430,11 @@ if ( ! function_exists( 'setup_asd_admin_functions_1_201811301' ) ) {
 
 if ( ! isset( $asd_admin_menu_version ) ) {
 	$asd_admin_menu_version = $this_asd_admin_menu_version;
-	setup_asd_admin_functions_1_201811301();
+	setup_asd_admin_functions_1_201812042();
 } else {
 	if ( $this_asd_admin_menu_version > $asd_admin_menu_version ) {
-		unhook_asd_admin_functions_1_201811301();
-		setup_asd_admin_functions_1_201811301();
+		unhook_asd_admin_functions_1_201812042();
+		setup_asd_admin_functions_1_201812042();
 		$asd_admin_menu_version = $this_asd_admin_menu_version;
 	}
 }

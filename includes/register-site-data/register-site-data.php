@@ -6,10 +6,8 @@
  * @subpackage  ASD_Site_Data
  * Author:      Michael H Fahey
  * Author URI:  https://artisansitedesigns.com/staff/michael-h-fahey
- * Version:     1.201811291
+ * Version:     1.201812042
  */
-
-$this_asd_register_site_data_version = 1.201811291;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '' );
@@ -24,24 +22,27 @@ if ( ! defined( 'ABSPATH' ) ) {
  * The values of the version of this module ($this_asd_register_site_data_version)
  * is compared to the value of the currently hooked version ($asd_register_site_data_version)
  * and if this module is higher version, the function
- *   unhook_asd_register_site_data_functions_1_201811291();
+ *   unhook_asd_register_site_data_functions_1_201812042();
  * is called to unhook the old version, and the function
- *   setup_asd_register_site_data_functions_1_201811291();
+ *   setup_asd_register_site_data_functions_1_201812042();
  * is called to hook the new versions.
  * This can happen more than once, so that in the end the highest version
  * will be the one that is hooked.
  * ---------------------------------------------------------------------------------- */
 
+$asd_registersitedata_file_data      = get_file_data( __FILE__, array( 'Version' => 'Version' ) );
+$this_asd_register_site_data_version = $asd_registersitedata_file_data['Version'];
+
 
 require_once plugin_dir_path( __FILE__ ) . '../asd-function-lib/asd-function-lib.php';
 
 
-if ( ! function_exists( 'unhook_asd_register_site_data_functions_1_201811291' ) ) {
+if ( ! function_exists( 'unhook_asd_register_site_data_functions_1_201812042' ) ) {
 	/** ----------------------------------------------------------------------------
 	 *   called to unhook the previous hooked scripts from filters if a newer version
 	 *   is detected
 	 *  --------------------------------------------------------------------------*/
-	function unhook_asd_register_site_data_functions_1_201811291() {
+	function unhook_asd_register_site_data_functions_1_201812042() {
 		global $asd_register_site_data_version;
 		$underscore_asd_register_site_data_version = str_replace( '.', '_', $asd_register_site_data_version );
 
@@ -54,36 +55,36 @@ if ( ! function_exists( 'unhook_asd_register_site_data_functions_1_201811291' ) 
 }
 
 
-if ( ! function_exists( 'setup_asd_register_site_data_functions_1_201811291' ) ) {
+if ( ! function_exists( 'setup_asd_register_site_data_functions_1_201812042' ) ) {
 	/** ----------------------------------------------------------------------------
 	 *   contains the functions for this version of register site data
 	 *  --------------------------------------------------------------------------*/
-	function setup_asd_register_site_data_functions_1_201811291() {
+	function setup_asd_register_site_data_functions_1_201812042() {
 
-		if ( ! function_exists( 'asd_fastbuild_sitedata_admin_enqueues_1_201811291' ) ) {
+		if ( ! function_exists( 'asd_fastbuild_sitedata_admin_enqueues_1_201812042' ) ) {
 			/** ----------------------------------------------------------------------------
 			 *   Function asd_fastbuild_sitedata_admin_enqueues()
 			 *   Enqueues WordPress plugin-provided jQuery-ui
 			 *   Hooks into admin_enqueue_scripts action
 			 *  --------------------------------------------------------------------------*/
-			function asd_fastbuild_sitedata_admin_enqueues_1_201811291() {
+			function asd_fastbuild_sitedata_admin_enqueues_1_201812042() {
 				global $this_asd_register_site_data_version;
 					wp_enqueue_script( 'jquery' );
 					wp_enqueue_script( 'jquery-ui-core' );
 					wp_enqueue_script( 'jquery-ui-tabs' );
 					wp_enqueue_style( 'asd-jquery-ui', plugin_dir_path( __FILE__ ) . 'css/jquery-ui.min.css', array(), $this_asd_register_site_data_version );
 			}
-			add_action( 'admin_enqueue_scripts', 'asd_fastbuild_sitedata_admin_enqueues_1_201811291' );
+			add_action( 'admin_enqueue_scripts', 'asd_fastbuild_sitedata_admin_enqueues_1_201812042' );
 		}
 
-		if ( ! function_exists( 'asd_register_fastbuild_options_1_201811291' ) ) {
+		if ( ! function_exists( 'asd_register_fastbuild_options_1_201812042' ) ) {
 			/** ----------------------------------------------------------------------------
 			 *   Function asd_register_fastbuild_options()
 			 *   Register settings to store organization data, for displaying in
 			 *   widgets, and for inserting into Structured Data
 			 *  --------------------------------------------------------------------------*/
-			function asd_register_fastbuild_options_1_201811291() {
-				add_settings_section( 'asd_fastbuild_org', 'Organization', 'asd_fastbuild_org_panel_1_201811291', 'asd_fastbuild_group_org' );
+			function asd_register_fastbuild_options_1_201812042() {
+				add_settings_section( 'asd_fastbuild_org', 'Organization', 'asd_fastbuild_org_panel_1_201812042', 'asd_fastbuild_group_org' );
 				register_setting( 'asd_fastbuild_group_org', 'asd_fastbuild_org' );
 				register_setting( 'asd_fastbuild_group_org', 'asd_fastbuild_org_legal' );
 				register_setting( 'asd_fastbuild_group_org', 'asd_fastbuild_org_type' );
@@ -95,20 +96,20 @@ if ( ! function_exists( 'setup_asd_register_site_data_functions_1_201811291' ) )
 
 				register_setting( 'asd_fastbuild_group_org', 'asd_fastbuild_org_pricerange' );
 
-				add_settings_section( 'asd_fastbuild_addr', 'Address', 'asd_fastbuild_addr_panel_1_201811291', 'asd_fastbuild_group_org' );
+				add_settings_section( 'asd_fastbuild_addr', 'Address', 'asd_fastbuild_addr_panel_1_201812042', 'asd_fastbuild_group_org' );
 				register_setting( 'asd_fastbuild_group_org', 'asd_fastbuild_addr_street1' );
 				register_setting( 'asd_fastbuild_group_org', 'asd_fastbuild_addr_city' );
 				register_setting( 'asd_fastbuild_group_org', 'asd_fastbuild_addr_state' );
 				register_setting( 'asd_fastbuild_group_org', 'asd_fastbuild_addr_zip' );
 
-				add_settings_section( 'asd_fastbuild_phone', 'Phone', 'asd_fastbuild_phone_panel_1_201811291', 'asd_fastbuild_group_org' );
+				add_settings_section( 'asd_fastbuild_phone', 'Phone', 'asd_fastbuild_phone_panel_1_201812042', 'asd_fastbuild_group_org' );
 				register_setting( 'asd_fastbuild_group_org', 'asd_fastbuild_phone1' );
 				register_setting( 'asd_fastbuild_group_org', 'asd_fastbuild_phone2' );
 
-				add_settings_section( 'asd_fastbuild_contact', 'Contact', 'asd_fastbuild_contact_panel_1_201811291', 'asd_fastbuild_group_org' );
+				add_settings_section( 'asd_fastbuild_contact', 'Contact', 'asd_fastbuild_contact_panel_1_201812042', 'asd_fastbuild_group_org' );
 				register_setting( 'asd_fastbuild_group_org', 'asd_fastbuild_email_info' );
 
-				add_settings_section( 'asd_fastbuild_hours', 'Hours', 'asd_fastbuild_hours_panel_1_201811291', 'asd_fastbuild_group_hours' );
+				add_settings_section( 'asd_fastbuild_hours', 'Hours', 'asd_fastbuild_hours_panel_1_201812042', 'asd_fastbuild_group_hours' );
 				register_setting( 'asd_fastbuild_group_hours', 'asd_fastbuild_hours_mon_start1' );
 				register_setting( 'asd_fastbuild_group_hours', 'asd_fastbuild_hours_mon_end1' );
 
@@ -130,7 +131,7 @@ if ( ! function_exists( 'setup_asd_register_site_data_functions_1_201811291' ) )
 				register_setting( 'asd_fastbuild_group_hours', 'asd_fastbuild_hours_sun_start1' );
 				register_setting( 'asd_fastbuild_group_hours', 'asd_fastbuild_hours_sun_end1' );
 
-				add_settings_section( 'asd_fastbuild_social', 'Social Media', 'asd_fastbuild_social_panel_1_201811291', 'asd_fastbuild_group_social' );
+				add_settings_section( 'asd_fastbuild_social', 'Social Media', 'asd_fastbuild_social_panel_1_201812042', 'asd_fastbuild_group_social' );
 				register_setting( 'asd_fastbuild_group_social', 'asd_fastbuild_social_facebook' );
 				register_setting( 'asd_fastbuild_group_social', 'asd_fastbuild_social_gplus' );
 				register_setting( 'asd_fastbuild_group_social', 'asd_fastbuild_social_instagram' );
@@ -141,17 +142,17 @@ if ( ! function_exists( 'setup_asd_register_site_data_functions_1_201811291' ) )
 				register_setting( 'asd_fastbuild_group_social', 'asd_fastbuild_social_yelp' );
 			}
 			if ( is_admin() ) {
-				add_action( 'admin_init', 'asd_register_fastbuild_options_1_201811291' );
+				add_action( 'admin_init', 'asd_register_fastbuild_options_1_201812042' );
 			}
 		}
 
-		if ( ! function_exists( 'asd_fastbuild_org_panel_1_201811291' ) ) {
+		if ( ! function_exists( 'asd_fastbuild_org_panel_1_201812042' ) ) {
 			/** ----------------------------------------------------------------------------
 			 *   Function asd_fastbuild_org_panel()
 			 *   callback function to build the organization part of the
 			 *   Site Data admin panel
 			 *  --------------------------------------------------------------------------*/
-			function asd_fastbuild_org_panel_1_201811291() {
+			function asd_fastbuild_org_panel_1_201812042() {
 				add_settings_field( 'asd_fastbuild_org_fld', 'Organization Name', 'asd_fld_insert', 'asd_fastbuild_group_org', 'asd_fastbuild_org', 'asd_fastbuild_org' );
 				add_settings_field( 'asd_fastbuild_org_legal_fld', 'Legal Name', 'asd_fld_insert', 'asd_fastbuild_group_org', 'asd_fastbuild_org', 'asd_fastbuild_org_legal' );
 				add_settings_field( 'asd_fastbuild_org_type_fld', 'Organization Type (schema.org)', 'asd_fld_insert', 'asd_fastbuild_group_org', 'asd_fastbuild_org', 'asd_fastbuild_org_type' );
@@ -162,13 +163,13 @@ if ( ! function_exists( 'setup_asd_register_site_data_functions_1_201811291' ) )
 			}
 		}
 
-		if ( ! function_exists( 'asd_fastbuild_addr_panel_1_201811291' ) ) {
+		if ( ! function_exists( 'asd_fastbuild_addr_panel_1_201812042' ) ) {
 			/** ----------------------------------------------------------------------------
 			 *   Function asd_fastbuild_addr_panel()
 			 *   callback function to build the address part of the
 			 *   Site Data admin panel
 			 *  --------------------------------------------------------------------------*/
-			function asd_fastbuild_addr_panel_1_201811291() {
+			function asd_fastbuild_addr_panel_1_201812042() {
 				add_settings_field( 'asd_fastbuild_addr_street1_fld', 'Street Address 1', 'asd_fld_insert', 'asd_fastbuild_group_org', 'asd_fastbuild_addr', 'asd_fastbuild_addr_street1' );
 				add_settings_field( 'asd_fastbuild_addr_city_fld', 'City', 'asd_fld_insert', 'asd_fastbuild_group_org', 'asd_fastbuild_addr', 'asd_fastbuild_addr_city' );
 				add_settings_field( 'asd_fastbuild_addr_state_fld', 'State', 'asd_fld_insert', 'asd_fastbuild_group_org', 'asd_fastbuild_addr', 'asd_fastbuild_addr_state' );
@@ -176,36 +177,36 @@ if ( ! function_exists( 'setup_asd_register_site_data_functions_1_201811291' ) )
 			}
 		}
 
-		if ( ! function_exists( 'asd_fastbuild_phone_panel_1_201811291' ) ) {
+		if ( ! function_exists( 'asd_fastbuild_phone_panel_1_201812042' ) ) {
 			/** ----------------------------------------------------------------------------
 			 *   Function asd_fastbuild_phone_panel()
 			 *   callback function to build the phone part of the
 			 *   Site Data admin panel
 			 *  --------------------------------------------------------------------------*/
-			function asd_fastbuild_phone_panel_1_201811291() {
+			function asd_fastbuild_phone_panel_1_201812042() {
 				add_settings_field( 'asd_fastbuild_phone1_fld', 'Phone 1', 'asd_fld_insert', 'asd_fastbuild_group_org', 'asd_fastbuild_phone', 'asd_fastbuild_phone1' );
 				add_settings_field( 'asd_fastbuild_phone2_fld', 'Phone 1', 'asd_fld_insert', 'asd_fastbuild_group_org', 'asd_fastbuild_phone', 'asd_fastbuild_phone2' );
 			}
 		}
 
-		if ( ! function_exists( 'asd_fastbuild_contact_panel_1_201811291' ) ) {
+		if ( ! function_exists( 'asd_fastbuild_contact_panel_1_201812042' ) ) {
 			/** ----------------------------------------------------------------------------
 			 *   Function asd_fastbuild_contact_panel()
 			 *   callback function to build the contact part of the
 			 *   Site Data admin panel
 			 *  --------------------------------------------------------------------------*/
-			function asd_fastbuild_contact_panel_1_201811291() {
+			function asd_fastbuild_contact_panel_1_201812042() {
 				add_settings_field( 'asd_fastbuild_email_info_fld', 'Contact Email', 'asd_fld_insert', 'asd_fastbuild_group_org', 'asd_fastbuild_contact', 'asd_fastbuild_email_info' );
 			}
 		}
 
-		if ( ! function_exists( 'asd_fastbuild_hours_panel_1_201811291' ) ) {
+		if ( ! function_exists( 'asd_fastbuild_hours_panel_1_201812042' ) ) {
 			/** ----------------------------------------------------------------------------
 			 *   Function asd_fastbuild_hours_panel()
 			 *   callback function to build the hours part of the
 			 *   Site Data admin panel
 			 *  --------------------------------------------------------------------------*/
-			function asd_fastbuild_hours_panel_1_201811291() {
+			function asd_fastbuild_hours_panel_1_201812042() {
 				add_settings_field( 'asd_fastbuild_hours_mon_start1_fld', 'Monday Start', 'asd_fld_insert_narrow', 'asd_fastbuild_group_hours', 'asd_fastbuild_hours', 'asd_fastbuild_hours_mon_start1' );
 				add_settings_field( 'asd_fastbuild_hours_mon_end1_fld', 'Monday End', 'asd_fld_insert_narrow', 'asd_fastbuild_group_hours', 'asd_fastbuild_hours', 'asd_fastbuild_hours_mon_end1' );
 
@@ -229,13 +230,13 @@ if ( ! function_exists( 'setup_asd_register_site_data_functions_1_201811291' ) )
 			}
 		}
 
-		if ( ! function_exists( 'asd_fastbuild_social_panel_1_201811291' ) ) {
+		if ( ! function_exists( 'asd_fastbuild_social_panel_1_201812042' ) ) {
 			/** ----------------------------------------------------------------------------
 			 *   Function asd_fastbuild_social_panel()
 			 *   callback function to build the social media links part of the
 			 *   Site Data admin panel
 			 *  --------------------------------------------------------------------------*/
-			function asd_fastbuild_social_panel_1_201811291() {
+			function asd_fastbuild_social_panel_1_201812042() {
 				add_settings_field( 'asd_fastbuild_social_facebook_fld', 'Facebook URL', 'asd_fld_insert', 'asd_fastbuild_group_social', 'asd_fastbuild_social', 'asd_fastbuild_social_facebook' );
 				add_settings_field( 'asd_fastbuild_social_gplus_fld', 'Google+ URL', 'asd_fld_insert', 'asd_fastbuild_group_social', 'asd_fastbuild_social', 'asd_fastbuild_social_gplus' );
 				add_settings_field( 'asd_fastbuild_social_instagram_fld', 'Instagram URL', 'asd_fld_insert', 'asd_fastbuild_group_social', 'asd_fastbuild_social', 'asd_fastbuild_social_instagram' );
@@ -247,33 +248,33 @@ if ( ! function_exists( 'setup_asd_register_site_data_functions_1_201811291' ) )
 			}
 		}
 
-		if ( ! function_exists( 'asd_fastbuild_register_site_data_1_201811291' ) ) {
+		if ( ! function_exists( 'asd_fastbuild_register_site_data_1_201812042' ) ) {
 			/** ----------------------------------------------------------------------------
 			 *   Function asd_fastbuild_admin_panel()
 			 *   adds the "Site Data" submenu to the top-level admin panel
 			 *   Hooks into the admin_menu action
 			 *  --------------------------------------------------------------------------*/
-			function asd_fastbuild_register_site_data_1_201811291() {
+			function asd_fastbuild_register_site_data_1_201812042() {
 				add_submenu_page(
 					'asd_settings',
 					'Site Data',
 					'Site Data',
 					'manage_options',
 					'asd_fastbuild',
-					'asd_fastbuild_options_1_201811291'
+					'asd_fastbuild_options_1_201812042'
 				);
 			}
 			if ( is_admin() ) {
-				add_action( 'admin_menu', 'asd_fastbuild_register_site_data_1_201811291', 12 );
+				add_action( 'admin_menu', 'asd_fastbuild_register_site_data_1_201812042', 12 );
 			}
 		}
 
-		if ( ! function_exists( 'asd_fastbuild_options_1_201811291' ) ) {
+		if ( ! function_exists( 'asd_fastbuild_options_1_201812042' ) ) {
 			/** ----------------------------------------------------------------------------
 			 *   Function asd_fastbuild_options()
 			 *   builds the Site Data Settings page, uses jquery-ui tabs
 			 *  --------------------------------------------------------------------------*/
-			function asd_fastbuild_options_1_201811291() {
+			function asd_fastbuild_options_1_201812042() {
 				if ( ! current_user_can( 'manage_options' ) ) {
 					wp_die( 'Insufficient Permissions' );
 				}
@@ -321,17 +322,17 @@ if ( ! function_exists( 'setup_asd_register_site_data_functions_1_201811291' ) )
 				</div>
 			</div>
 
-			<?php
+				<?php
 			}
 		}
 
-		if ( ! function_exists( 'asd_organization_json_1_201811291' ) ) {
+		if ( ! function_exists( 'asd_organization_json_1_201812042' ) ) {
 			/** ----------------------------------------------------------------------------
 			 *   Function asd_organization_json()
 			 *   Prints Structured data into page footer in JSON-LD format
 			 *   Hooks into wp_print_footer_scripts action
 			 *  --------------------------------------------------------------------------*/
-			function asd_organization_json_1_201811291() {
+			function asd_organization_json_1_201812042() {
 				if ( is_front_page() ) {
 
 					echo '<script type="application/ld+json">';
@@ -389,8 +390,8 @@ if ( ! function_exists( 'setup_asd_register_site_data_functions_1_201811291' ) )
 						$asd_json_data['email'] = esc_attr( get_option( 'asd_fastbuild_email_info' )['text_string'] );
 					}
 
-					$address                  = array();
-					$address['@type']         = 'PostalAddress';
+					$address          = array();
+					$address['@type'] = 'PostalAddress';
 					if ( get_option( 'asd_fastbuild_addr_street1' )['text_string'] ) {
 						$address['streetAddress'] = esc_attr( get_option( 'asd_fastbuild_addr_street1' )['text_string'] );
 					}
@@ -453,7 +454,7 @@ if ( ! function_exists( 'setup_asd_register_site_data_functions_1_201811291' ) )
 					echo '</script>';
 				}
 			}
-			add_action( 'wp_print_footer_scripts', 'asd_organization_json_1_201811291' );
+			add_action( 'wp_print_footer_scripts', 'asd_organization_json_1_201812042' );
 		}
 
 	}
@@ -462,11 +463,11 @@ if ( ! function_exists( 'setup_asd_register_site_data_functions_1_201811291' ) )
 
 if ( ! isset( $asd_register_site_data_version ) ) {
 	$asd_register_site_data_version = $this_asd_register_site_data_version;
-	setup_asd_register_site_data_functions_1_201811291();
+	setup_asd_register_site_data_functions_1_201812042();
 } else {
 	if ( $this_asd_register_site_data_version > $asd_register_site_data_version ) {
-		unhook_asd_register_site_data_functions_1_201811291();
-		setup_asd_register_site_data_functions_1_201811291();
+		unhook_asd_register_site_data_functions_1_201812042();
+		setup_asd_register_site_data_functions_1_201812042();
 		$asd_register_site_data_version = $this_asd_register_site_data_version;
 	}
 }
