@@ -36,6 +36,7 @@ if ( ! function_exists( 'asd_function_lib_widgets_enqueues' ) ) {
 	 *   @param int $page - passed by the admin_enqueue_scripts action.
 	 */
 	function asd_function_lib_widgets_enqueues( $page ) {
+		global $this_asd_function_lib_version;
 		if ( 'artisan-site-designs_page_asd_decorate_navbar_settings' === $page ) {
 			wp_enqueue_style( 'asd-function-lib', plugin_dir_url( __FILE__ ) . 'css/asd-function-lib.css', array(), $this_asd_function_lib_version );
 		}
@@ -146,7 +147,8 @@ if ( ! function_exists( 'asd_media_library_selector_control' ) ) {
 			function Refresh_Image (the_id){
 				var data = { 
 					action: '<?php echo esc_attr( $settingname . '_action' ); ?>',
-					id: the_id
+					id: the_id,
+					image_nonce: '<?php echo wp_create_nonce( 'asd_media_library_selector_control' ); ?>'
 				};
 				jQuery.get(ajaxurl, data, function(response) {
 
