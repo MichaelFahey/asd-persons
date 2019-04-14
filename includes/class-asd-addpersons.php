@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *   instantiated by an instance of the ASD_PersonsShortscode class,
  *   which also passes along the shortcode parameters.
  *  --------------------------------------------------------------------------*/
-class ASD_AddPersons extends ASD_AddCustomPosts_1_201811241 {
+class ASD_AddPersons extends ASD_AddCustomPosts_1_201904141 {
 
 	/** ----------------------------------------------------------------------------
 	 *   contsructor

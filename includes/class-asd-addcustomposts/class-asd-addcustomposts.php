@@ -5,7 +5,7 @@
  * @package        ASD_CustomPosts
  * Author:         Michael H Fahey
  * Author URI:     https://artisansitedesigns.com/staff/michael-h-fahey
- * Version:        1.201812042
+ * Version:        1.201904141
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -24,7 +24,9 @@ if ( isset( $asd_addcustom_post_version ) ) {
 }
 
 
-$output_custompost_index;
+if ( ! defined ( 'output_custompost_counter' ) ) {
+	$output_custompost_counter=array();
+}
 
 
 if ( ! class_exists( 'ASD_AddCustomPosts' ) ) {
@@ -48,6 +50,66 @@ if ( ! class_exists( 'ASD_AddCustomPosts' ) ) {
 		 */
 		public function __construct( $atts, $child_plugin_dir, $child_default_template, $child_posttype ) {
 
+		}
+
+	}
+
+}
+
+if ( ! class_exists( 'ASD_AddCustomPosts_1_201904141' ) ) {
+	/** ----------------------------------------------------------------------------
+	 *   class ASD_AddCustomPosts_1_201904141
+	 *   instantiated by an instance of the ASD_CustomPostsShortscode class,
+	 *   which also passes along the shortcode parameters.
+	 *  --------------------------------------------------------------------------*/
+	class ASD_AddCustomPosts_1_201904141 extends ASD_AddCustomPosts_1_201811241 {
+		
+		/** ----------------------------------------------------------------------------
+		 *   constructor
+		 *   calls parent constructor
+		 *  ----------------------------------------------------------------------------
+		 *
+		 *   @param Array  $atts - Parameters passed from the shortcode.
+		 *   @param String $child_plugin_dir - directory of the plugin.
+		 *   @param String $child_default_template - default page template for this
+		 *          post type.
+		 *   @param String $child_posttype - custom post type slug.
+		public function __construct( $atts, $child_plugin_dir, $child_default_template, $child_posttype ) {
+			parent::__construct( $atts, $child_plugin_dir, $child_default_template, $child_posttype );
+		}
+
+		
+		/** ----------------------------------------------------------------------------
+		 *   function output_customposts()
+		 *   Queries the database for posts based on data in the parameters array
+		 *   does a have_posts() loop with a shortcode template
+		 *   and concantenates and returns $output
+		 *  --------------------------------------------------------------------------*/
+		public function output_customposts() {
+
+			if ( ! $this->parameters ) {
+				return 'no arguments';
+			}
+
+			global $output_custompost_counter;
+
+			$matching = new WP_Query( $this->parameters );
+			$output   = '';
+
+			if ( $matching->have_posts() ) {
+				$output_custompost_counter[$this->posttype] = 0;
+				while ( $matching->have_posts() ) {
+					global $post;
+					$output .= self::add_template_part( $matching );
+					$output_custompost_counter[$this->posttype]++;
+					# echo 'output_custompost_counter[' . $this->posttype . '] = ' .  $output_custompost_counter[$this->posttype] . "\r\n";
+				}
+			} else {
+				$output = '<div class="no_customposts"></div>';
+			}
+
+			$output_no_wpautop = str_replace( '<p></p>', '', $output );
+			return $output_no_wpautop;
 		}
 
 	}
@@ -176,17 +238,13 @@ if ( ! class_exists( 'ASD_AddCustomPosts_1_201811241' ) ) {
 				return 'no arguments';
 			}
 
-			global $output_custompost_index;
-
 			$matching = new WP_Query( $this->parameters );
 			$output   = '';
 
 			if ( $matching->have_posts() ) {
-				$output_custompost_index = 0;
 				while ( $matching->have_posts() ) {
 					global $post;
 					$output .= self::add_template_part( $matching );
-					$output_custompost_index++;
 				}
 			} else {
 				$output = '<div class="no_customposts"></div>';

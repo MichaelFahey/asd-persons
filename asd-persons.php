@@ -11,7 +11,7 @@
  * Author URI:     https://artisansitedesigns.com/staff/michael-h-fahey/
  * Text Domain:    asd_persons
  * License:        GPL3
- * Version:        1.201812011
+ * Version:        1.201904141
  *
  * ASD Persons is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
